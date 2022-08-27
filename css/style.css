@@ -1,0 +1,385 @@
+/*== General ==*/
+:root {
+  font-size: 62.5%; /*faz 1rem = 10px*/
+
+  /*Color Changer*/
+  --secondary-background: hsl(0, 0%, 7%);
+  --primary-background: hsl(180, 43%, 95%);
+  --text-color: hsl(210, 47%, 94%);
+  --light-blue: hsl(201, 64%, 40%);
+  --dark-blue: hsl(229, 77%, 35%);
+
+  /*Size Changer*/
+  --nav-height: 7.2rem; /*Altura da NAV*/
+}
+
+@font-face {
+  font-family: 'Game of Squids';
+  src: url('../fonts/Game-Of-Squids.ttf') format('truetype'),
+    url('../fonts/Game Of Squids.otf') format('opentype');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
+  overflow: visible;
+
+  background-color: white;
+}
+
+.container {
+  width: min(50rem, 100%);
+  margin-inline: auto;
+}
+
+ul {
+  list-style: none;
+  padding: initial;
+}
+
+nav button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/*-- Navigation --*/
+
+#navigation {
+  display: flex;
+  position: fixed;
+  background-color: var(--secondary-background);
+  top: 0;
+  height: var(--nav-height);
+  width: 100%;
+  z-index: 100;
+}
+
+#navigation .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 2rem;
+  width: max(50rem);
+}
+
+/*-- Logo --*/
+#navigation .logo {
+  font-family: Game of Squids;
+  font-size: 3rem;
+  text-decoration: none;
+
+  background: linear-gradient(90deg, var(--light-blue), var(--dark-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: brightness(1.5);
+  transition: 0.5s;
+}
+
+#navigation .logo:hover {
+  letter-spacing: 0.1rem;
+  text-shadow: 0 0 1rem var(--dark-blue);
+  filter: brightness(1.5);
+}
+
+/*-- Menu Expanded --*/
+
+.close-menu {
+  display: none;
+}
+
+.menu,
+.close-menu,
+body.menu-expanded .open-menu {
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+}
+
+body.menu-expanded .menu,
+body.menu-expanded .close-menu {
+  display: initial;
+  opacity: 1;
+  visibility: visible;
+}
+
+body.menu-expanded {
+  overflow: hidden;
+}
+
+body.menu-expanded > :not(nav) {
+  display: none;
+}
+
+body.menu-expanded .menu {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 4rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--secondary-background);
+
+  width: 100vw;
+  height: 100vh;
+
+  transition: transform 300ms;
+  transform: translateY(0%);
+}
+
+body.menu-expanded nav {
+  position: relative;
+}
+
+.menu {
+  transform: translateY(100%);
+}
+
+/*-- Menu Options --*/
+
+body.menu-expanded .menu .menu-options {
+  display: flex;
+  flex-direction: column;
+  font-family: Game of Squids;
+  gap: 12rem;
+
+  margin-top: 18rem;
+  font-size: 2.4rem;
+  line-height: 3.1rem;
+  padding-right: 2rem;
+}
+
+.menu .menu-options li a {
+  color: var(--text-color);
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.menu .menu-options li a:hover {
+  color: var(--dark-blue);
+  filter: brightness(2.6);
+}
+
+body.menu-expanded .logo {
+  position: relative;
+  z-index: 10;
+}
+
+body.menu-expanded .close-menu {
+  z-index: 10;
+}
+
+/*-- Signup Box  --*/
+body.menu-expanded .menu .signup-box {
+  display: flex;
+  justify-content: center;
+  margin-block: 8rem;
+  gap: 3rem;
+}
+
+.signup-box a {
+  background-color: var(--secondary-background);
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.signup-box a:hover {
+  color: var(--light-blue);
+}
+
+.signup-box a:nth-child(1) {
+  padding: 2rem 5.8rem;
+}
+
+.signup-box a:nth-child(2) {
+  padding: 2rem 4rem;
+}
+
+/*-- Social Links  --*/
+
+body.menu-expanded .menu .social-links {
+  display: flex;
+  gap: 8rem;
+  padding-right: 2rem;
+  justify-content: center;
+}
+
+.social-links li a {
+  font-size: 2.4rem;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.social-links li a:hover {
+  color: var(--dark-blue);
+  filter: brightness(2.6);
+}
+
+/*-- Home --*/
+
+#home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: calc(var(--nav-height) + 3rem);
+  padding-bottom: 2.9rem;
+  background-color: var(--primary-background);
+}
+
+#home .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+#home .container header {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+#home .container header h1 {
+  font-family: Game of Squids;
+  font-weight: 700;
+  font-size: 3rem;
+
+  color: var(--secondary-background);
+}
+
+#home .container header p {
+  font-family: Game of Squids;
+  font-size: 1.3rem;
+  font-weight: 4;
+
+  font-weight: 400;
+
+  color: var(--secondary-background);
+}
+
+#home .container .content {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding: 10rem 0 0 0;
+  margin: 0;
+}
+
+#home .container .content .joystick {
+  z-index: 10;
+  width: min(100%, auto);
+}
+
+#home .container .content .color-box {
+  position: absolute;
+  left: 50;
+  top: 60%;
+  background: var(--secondary-background);
+  border-radius: 4rem 4rem 0 0;
+  height: 50%;
+  width: 38rem;
+  box-shadow: 0 0 3rem var(--secondary-background);
+}
+
+/*-- chooser --*/
+#chooser {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--primary-background);
+}
+
+#chooser .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#chooser .container .cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-block: 2rem;
+  padding-inline: 3.5rem;
+  gap: 4rem;
+  border-radius: 0 0 4rem 4rem;
+
+  background-color: var(--secondary-background);
+  box-shadow: 0 0 3rem var(--secondary-background);
+}
+
+#chooser .container .cards .card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 31rem;
+  height: 41rem;
+  overflow: hidden;
+
+  background-color: var(--secondary-background);
+  filter: brightness(1.5);
+}
+
+/*-- Border Animation! --*/
+
+#chooser .container .cards .card.active::before {
+  content: '';
+  position: absolute;
+  width: 15rem;
+  height: 130%;
+  background: linear-gradient(var(--dark-blue), var(--light-blue));
+  animation: animate 4s linear infinite;
+  z-index: -1;
+}
+
+#chooser .container .cards .card.active::after {
+  content: '';
+  position: absolute;
+  inset: 0.3rem;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#chooser .container .cards .card h1 {
+  position: absolute;
+  font-family: Game of Squids;
+  font-weight: 700;
+  color: white;
+  z-index: 10;
+}
+
+/*-- Products  --*/
